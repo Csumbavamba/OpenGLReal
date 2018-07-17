@@ -18,9 +18,10 @@ class ShaderLoader
 		// Save the shader --> Add it to the savedShaders
 		void SaveShader(char* shaderName, GLuint shaderType);
 		// LoadShader --> Check if the shader with the same name exists
-		GLuint ProgramExists(char *filename);
-		GLuint VertexShaderExist(char *filename);
-		GLuint FragmentShaderExist(char *filename);
+
+		bool LoadProgramIfExists(char *filename, GLuint& program);
+		bool LoadVertexIfExists(char *filename, GLuint& vertexShader);
+		bool LoadFragmentIfExists(char *filename, GLuint& fragmentShader);
 
 	public:
 		ShaderLoader(void);

@@ -1,7 +1,9 @@
 #include "ShaderLoader.h" 
-#include<iostream>
-#include<fstream>
-#include<vector>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <map>
+#include <algorithm>
 
 ShaderLoader::ShaderLoader(void){}
 ShaderLoader::~ShaderLoader(void){}
@@ -59,22 +61,45 @@ GLuint ShaderLoader::CreateProgram(char* vertexShaderFilename,
 	char* fragmentShaderFilename)
 {
 	// Check if the shaders exist
+	GLuint program;
+	GLuint vertexShader;
+	GLuint fragmentShader;
 
-	//read the shader files and save the code
-	std::string vertex_shader_code = ReadShader(vertexShaderFilename);
-	std::string fragment_shader_code = ReadShader(fragmentShaderFilename);
+	char programName; // TODO concatenate the program file name
+	std::string vertexShaderCode;
+	std::string fragmentShaderCode;
 
-	GLuint vertex_shader = CreateShader(GL_VERTEX_SHADER, vertex_shader_code, "vertex shader");
-	GLuint fragment_shader = CreateShader(GL_FRAGMENT_SHADER, fragment_shader_code, "fragment shader");
+	// If the program doesn't exist
+	if (!LoadProgramIfExists(&programName, program))
+	{
+		// If vertex shader exist doesn't exist
+		if (!LoadVertexIfExists(vertexShaderFilename, vertexShader))
+		{
+			// Create vertex shader
+			vertexShaderCode = ReadShader(vertexShaderFilename); //read the shader files and save the code
+			vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, "vertex shader");
+		}
+
+		// If fragment shader exist doesn't exist
+		if (!LoadFragmentIfExists(fragmentShaderFilename, fragmentShader))
+		{
+			// Create fragment shader
+			fragmentShaderCode = ReadShader(fragmentShaderFilename); //read the shader files and save the code
+			fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, "fragment shader");
+
+		}
+	}
+
 
 	int link_result = 0;
 	//create the program handle, attatch the shaders and link it
-	GLuint program = glCreateProgram();
-	glAttachShader(program, vertex_shader);
-	glAttachShader(program, fragment_shader);
+	program = glCreateProgram();
+	glAttachShader(program, vertexShader);
+	glAttachShader(program, fragmentShader);
 
 	glLinkProgram(program);
 	glGetProgramiv(program, GL_LINK_STATUS, &link_result);
+
 	//check for link errors
 	if (link_result == GL_FALSE)
 	{
@@ -90,19 +115,46 @@ GLuint ShaderLoader::CreateProgram(char* vertexShaderFilename,
 }
 
 
-GLuint ShaderLoader::ProgramExists(char *filename)
+// If Program exists, loads program
+bool ShaderLoader::LoadProgramIfExists(char * filename, GLuint& program)
 {
-	savedPrograms.find(filename);
+	std::map<char*, GLuint>::iterator iterator;
 
-	return 0;
+	iterator = savedPrograms.find(filename);
+
+	if (iterator != savedPrograms.end())
+	{
+		program = iterator->second;
+		return true;
+	}
+	return false;
 }
 
-GLuint ShaderLoader::VertexShaderExist(char *filename)
+bool ShaderLoader::LoadVertexIfExists(char * filename, GLuint& vertexShader)
 {
-	return 0;
+	std::map<char*, GLuint>::iterator iterator;
+
+	iterator = savedVertexShaders.find(filename);
+
+	if (iterator != savedVertexShaders.end())
+	{
+		vertexShader = iterator->second;
+		return true; 
+	}
+	return false;
 }
 
-GLuint ShaderLoader::FragmentShaderExist(char *filename)
+bool ShaderLoader::LoadFragmentIfExists(char * filename, GLuint& fragmentShader)
 {
-	return 0;
+	std::map<char*, GLuint>::iterator iterator;
+
+	iterator = savedFragmentShaders.find(filename);
+
+	if (iterator != savedFragmentShaders.end())
+	{
+		fragmentShader = iterator->second;
+		return true;
+	}
+
+	return false;
 }
