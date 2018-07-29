@@ -1,4 +1,3 @@
-﻿  ShaderLoader.cpp
-  main.cpp
-  Generating Code...
-  OpenGLBasics.vcxproj -> H:\MDS GitHub\OpenGL\Debug\OpenGLBasics.exe
+﻿  main.cpp
+h:\mdsgithub\opengl\openglbasics\main.cpp(116): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
+  OpenGLBasics.vcxproj -> H:\MDSGitHub\OpenGL\Debug\OpenGLBasics.exe

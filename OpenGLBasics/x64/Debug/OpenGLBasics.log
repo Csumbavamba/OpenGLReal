@@ -1,6 +1,6 @@
 ﻿  ShaderLoader.cpp
-h:\mds github\opengl\openglbasics\shaderloader.cpp(36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-h:\mds github\opengl\openglbasics\shaderloader.cpp(36): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+h:\mdsgithub\opengl\openglbasics\shaderloader.cpp(38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+h:\mdsgithub\opengl\openglbasics\shaderloader.cpp(38): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
   main.cpp
   Generating Code...
 main.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function main
@@ -23,7 +23,7 @@ ShaderLoader.obj : error LNK2001: unresolved external symbol __imp___glewGetShad
 ShaderLoader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
 ShaderLoader.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
 ShaderLoader.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
-H:\MDS GitHub\OpenGL\OpenGLBasics\\Dependencies\freeglut\freeglut.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-H:\MDS GitHub\OpenGL\OpenGLBasics\\Dependencies\glew\glew32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-H:\MDS GitHub\OpenGL\OpenGLBasics\\Dependencies\freeglut\freeglutd.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-H:\MDS GitHub\OpenGL\x64\Debug\OpenGLBasics.exe : fatal error LNK1120: 20 unresolved externals
+H:\MDSGitHub\OpenGL\OpenGLBasics\\Dependencies\freeglut\freeglut.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+H:\MDSGitHub\OpenGL\OpenGLBasics\\Dependencies\glew\glew32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+H:\MDSGitHub\OpenGL\OpenGLBasics\\Dependencies\freeglut\freeglutd.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+H:\MDSGitHub\OpenGL\x64\Debug\OpenGLBasics.exe : fatal error LNK1120: 20 unresolved externals

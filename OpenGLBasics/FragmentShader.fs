@@ -1,8 +1,13 @@
 #version 450 core
 
+in vec3 fragmentColor;
+
 out vec4 color;
 
-void main(void)
+uniform float currentTime;
+
+void main()
 {
-	color = vec4(0.0, 0.8, 1.0, 1.0);
+	vec3 changingColor = fragmentColor * abs(sin(currentTime));
+	color = vec4(changingColor, 1.0);
 }
